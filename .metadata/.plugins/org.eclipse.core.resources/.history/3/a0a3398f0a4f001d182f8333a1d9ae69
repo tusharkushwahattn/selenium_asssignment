@@ -1,0 +1,45 @@
+package com.selenium;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Q1 {
+    public static WebDriver driver;
+
+    @BeforeMethod
+    public static void Browser() {
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+        // Try to Fetch the alert popup text.
+        driver.navigate().to("  https://rahulshettyacademy.com/AutomationPractice/");
+        driver.findElement(By.id("name")).sendKeys("Tushar");
+        driver.findElement(By.id("alertbtn")).click();
+
+    }
+
+    @Test
+    public static void fetchAlertText() {
+        Alert alert = driver.switchTo().alert();
+        System.out.println(alert.getText());
+    }
+
+    @Test
+    public void dismiss() {
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
+    }
+
+    @Test
+    public void accept() {
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+    }
+
+}

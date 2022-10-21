@@ -1,0 +1,26 @@
+package com.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Q2 {
+    public WebDriver driver;
+
+    @BeforeMethod
+    public void Browser() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get(" https://www.tothenew.com/");
+    }
+
+    @Test
+    public void Services() {
+        driver.findElement(By.xpath("(//a[@id='h-Services'])[1]")).click();
+        ;
+    }
+}
